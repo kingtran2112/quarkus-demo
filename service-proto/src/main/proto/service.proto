@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = " com.kawaii.service.proto.product";
+option java_outer_classname = "HelloGrpcProto";
+
+package hello;
+
+service AnotherHelloGrpc {
+  rpc SayHello (AnotherHelloRequest) returns (AnotherHelloReply) {}
+}
+
+message AnotherHelloRequest {
+  string name = 1;
+}
+
+message AnotherHelloReply {
+  string message = 1;
+}

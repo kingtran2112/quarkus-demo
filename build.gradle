@@ -1,20 +1,13 @@
 plugins {
     id 'java'
     id 'io.quarkus'
+    id 'org.kordamp.gradle.jandex' version '0.11.0'
 }
 
 repositories {
-    maven {
-        url = uri("https://maven.pkg.github.com/kingtran2112/service-proto")
-        credentials {
-            username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-        }
-    }
     mavenCentral()
     mavenLocal()
 }
-def serviceProtoVersion = '0.0.2'
 
 dependencies {
     implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
@@ -24,7 +17,7 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
 
-    implementation "com.kawaii:service-proto:${serviceProtoVersion}"
+    implementation project(':service-proto')
 }
 
 group 'com.example'
